@@ -10,6 +10,22 @@ export interface ButtonProps {
     shape: 'rounded-full' | 'rounded-md' | 'rounded-sm';
     onClick?: () => void;
 }
+export interface UserProps {
+    id:number;
+    name:string;
+    email:string;
+    address: {
+        street: string;
+        suite: string;
+        city: string;
+        zipcode: string;
+        geo: {
+            lat: string;
+            lng: string;
+        }
+    };
+
+}
 
 export interface Post {
     id: number;
