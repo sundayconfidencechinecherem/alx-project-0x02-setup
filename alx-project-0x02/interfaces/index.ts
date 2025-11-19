@@ -1,11 +1,7 @@
 
 export interface CardProps {
     title: string;
-    description: string;
-    imageUrl: string;
-    price: number;
-    rating: number;
-    location: string;
+    content: string
 }
 
 
