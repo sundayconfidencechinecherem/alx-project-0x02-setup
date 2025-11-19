@@ -6,7 +6,9 @@ export interface CardProps {
 
 export interface ButtonProps {
     text: string;
-    className: string;
+    size: 'small' | 'medium' | 'large' ;
+    shape: 'rounded-full' | 'rounded-md' | 'rounded-sm';
+    onClick?: () => void;
 }
 
 export interface Post {
