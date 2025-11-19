@@ -1,31 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Header from '@/components/layout/Header';
 import { PostProps } from '@/interfaces';
 import PostCard from '@/components/common/PostCard';
 import { Post } from '../interfaces/index';
-const Posts: React.FC = () => {
-    const [posts, setPosts] = useState<PostProps[]>([])
+import { GetStaticProps } from 'next';
 
-    useEffect (() => {
-        const fetchPosts = async () => {
-            try{
-                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-                const data = await response.json();
-                console.log('api data', data)
 
-                const transformedposts: PostProps[] = data.map((post: any) => ({
-                    title: post.title,
-                    content: post.body,
-                    userId: post.userId
-                }));
 
-                setPosts(transformedposts);
-            }catch(error){
-                console.log('api data fetch error: ' ,error)
-            }
-        }
-        fetchPosts();
-    }, []);
+interface postsPageProps {
+    posts: PostProps[];
+}
+const Posts: React.FC<postsPageProps> = ({posts}) => {
   return (
     <div>
         <Header />
@@ -33,8 +18,8 @@ const Posts: React.FC = () => {
         <p>This is the posts page.</p>
         <div>
             {
-                posts.map((post,index) => (
-                    <PostCard key={index} title={post.title} content={post.content} userId={post.userId} />
+                posts.map((post) => (
+                    <PostCard key={post.id} title={post.title} content={post.content} userId={post.userId} />
                 ))
             }
         </div>
@@ -42,4 +27,31 @@ const Posts: React.FC = () => {
   );
 };
 
+
+export const getStaticProps:  GetStaticProps = async () => {
+    try{
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+        const data = await response.json();
+        //console.log('data json', data)
+
+        const posts: PostProps[] = data.map((post:any) => ({
+            title: post.title,
+            id: post.id,
+            content: post.body,
+            userId: post.userId
+        }))
+        return {
+            props: {
+                posts,
+            }
+        };
+    }catch (error){
+        console.log('api data fetch error: ', error)
+        return{
+            props:{
+                posts: []
+            }
+        }
+    }
+}
 export default Posts;
