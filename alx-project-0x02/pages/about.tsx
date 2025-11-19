@@ -1,4 +1,5 @@
 import Button from '@/components/common/Button';
+import Header from '@/components/layout/Header';
 import React from 'react';
 
 const About: React.FC = () => {
@@ -7,6 +8,7 @@ const About: React.FC = () => {
   }
   return (
     <div>
+      <Header />
         <h1>Welcome to About Page</h1>
         <Button onClick={handleAboutButton}  size='small' shape='rounded-full' text='About button1' />
         <Button onClick={handleAboutButton}  size='medium' shape='rounded-sm' text='About button2' />

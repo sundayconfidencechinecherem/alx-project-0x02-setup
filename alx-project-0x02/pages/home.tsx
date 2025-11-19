@@ -2,6 +2,7 @@ import Card from '@/components/common/Card';
 import React, { useState } from 'react';
 import PostModal from '@/components/common/PostModal';
 import { Post } from '@/interfaces';
+import Header from '@/components/layout/Header';
 const Home: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [posts, setPosts] = useState<Post[]>([]);
@@ -17,6 +18,7 @@ const Home: React.FC = () => {
     }
   return (
     <div>
+        <Header />
       <h1>Home</h1>
       <button onClick={() => setIsModalOpen(true)}>CREATE POST</button>
 
