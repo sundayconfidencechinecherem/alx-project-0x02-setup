@@ -15,10 +15,12 @@ const PostModal: React.FC <PostModalProps> = ({isOpen, onSubmit, onClose}) => {
   return (
     <div>
         <h1>Create a post</h1>
+        <form onSubmit={handleSubmit}>
         <input type="text" id='title'  value={title} onChange={(e) => setTitle(e.target.value)}/>
         <input type="text" id='content' value={content} onChange={(e) => setContent(e.target.value)} />
         <button onClick={onClose}>Cancel</button>
         <button onClick={handleSubmit}>Post</button>
+        </form>
     </div>
   );
 };
