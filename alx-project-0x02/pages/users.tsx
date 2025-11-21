@@ -11,20 +11,21 @@ interface UserpageProps{
 }
 const Users: React.FC<UserpageProps> = ({users}) => {
   return (
-    <div>
+    <div >
         <Header />
-        <h1>Users</h1>
-        <div>
+       <div className='mx-10 '>
+         <h1 className='text-center font-bold text-2xl p-4'>Anna Student`s Profile</h1>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {
                 users.map((user) => (
                     <UserCard key={user.id} name={user.name} email={user.email}  
                     address={user.address} 
-
                     />
                 ))
             }
         </div>
     </div>
+       </div>
   );
 };
 
